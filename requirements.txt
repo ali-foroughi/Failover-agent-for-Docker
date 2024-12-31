@@ -1,0 +1,4 @@
+fastapi
+docker
+requests
+uvicorn

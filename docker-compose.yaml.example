@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  stmgr-failover-agent-1:
+    image: reg.zcore.local/zcore/failover-agent:0.0.4
+    container_name: stmgr-failover-agent-1
+    command: ["python3", "main.py", "--server", "server1"]
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./conf/config.py:/app/config.py
+    networks:
+      srv8_c5_internal_s1mme:
+        ipv4_address: 10.11.28.36
+networks:
+  srv8_c5_internal_s1mme:
+    name: srv8_c5_internal_s1mme
+    external: true
